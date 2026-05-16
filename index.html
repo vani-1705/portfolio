@@ -1,0 +1,1455 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Vani Vasantha Laxmi – Portfolio</title>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #060a10;
+    --surface: #0d1520;
+    --surface2: #111d2e;
+    --accent: #00d4ff;
+    --accent2: #7b61ff;
+    --accent3: #ff6b9d;
+    --text: #e8f0fe;
+    --muted: #6b7fa3;
+    --border: rgba(0,212,255,0.12);
+    --glow: 0 0 40px rgba(0,212,255,0.15);
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    min-height: 100vh;
+    overflow-x: hidden;
+  }
+
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background:
+      radial-gradient(ellipse 60% 50% at 10% 20%, rgba(0,212,255,0.06) 0%, transparent 60%),
+      radial-gradient(ellipse 50% 40% at 90% 80%, rgba(123,97,255,0.07) 0%, transparent 60%),
+      radial-gradient(ellipse 40% 60% at 50% 50%, rgba(255,107,157,0.03) 0%, transparent 70%);
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  body::after {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background-image:
+      linear-gradient(rgba(0,212,255,0.03) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(0,212,255,0.03) 1px, transparent 1px);
+    background-size: 60px 60px;
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  .wrapper {
+    position: relative;
+    z-index: 1;
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 0 20px 60px;
+  }
+
+  /* ── HEADER ── */
+  header {
+    text-align: center;
+    padding: 60px 20px 40px;
+    position: relative;
+  }
+
+  .header-label {
+    display: inline-block;
+    font-family: 'Syne', sans-serif;
+    font-size: 0.7rem;
+    letter-spacing: 0.3em;
+    color: var(--accent);
+    text-transform: uppercase;
+    border: 1px solid var(--border);
+    padding: 6px 18px;
+    border-radius: 50px;
+    margin-bottom: 28px;
+    background: rgba(0,212,255,0.05);
+    animation: fadeDown 0.8s ease both;
+  }
+
+  header h1 {
+    font-family: 'Syne', sans-serif;
+    font-size: clamp(2.2rem, 6vw, 4rem);
+    font-weight: 800;
+    line-height: 1.1;
+    animation: fadeDown 0.9s ease 0.1s both;
+    background: linear-gradient(135deg, #ffffff 0%, var(--accent) 50%, var(--accent2) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  header p {
+    color: var(--muted);
+    font-size: 0.95rem;
+    margin-top: 12px;
+    animation: fadeDown 1s ease 0.2s both;
+    font-weight: 300;
+    letter-spacing: 0.02em;
+  }
+
+  .header-line {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 16px;
+    margin-top: 36px;
+    animation: fadeDown 1.1s ease 0.3s both;
+  }
+
+  .header-line::before,
+  .header-line::after {
+    content: '';
+    height: 1px;
+    width: 80px;
+    background: linear-gradient(90deg, transparent, var(--accent));
+  }
+  .header-line::after { background: linear-gradient(90deg, var(--accent), transparent); }
+
+  .header-dot {
+    width: 6px; height: 6px;
+    border-radius: 50%;
+    background: var(--accent);
+    box-shadow: 0 0 12px var(--accent);
+  }
+
+  /* ── NAV ── */
+  nav {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 8px;
+    padding: 0 10px 40px;
+    animation: fadeUp 1s ease 0.4s both;
+  }
+
+  nav button {
+    font-family: 'Syne', sans-serif;
+    font-size: 0.78rem;
+    font-weight: 600;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    padding: 10px 20px;
+    border: 1px solid var(--border);
+    background: rgba(13,21,32,0.8);
+    color: var(--muted);
+    border-radius: 50px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    backdrop-filter: blur(10px);
+    position: relative;
+    overflow: hidden;
+  }
+
+  nav button::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(135deg, rgba(0,212,255,0.15), rgba(123,97,255,0.1));
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    border-radius: 50px;
+  }
+
+  nav button:hover::before,
+  nav button.active::before { opacity: 1; }
+
+  nav button:hover,
+  nav button.active {
+    border-color: rgba(0,212,255,0.5);
+    color: #fff;
+    box-shadow: 0 0 20px rgba(0,212,255,0.2);
+    transform: translateY(-1px);
+  }
+
+  nav button.active {
+    color: var(--accent);
+    box-shadow: 0 0 24px rgba(0,212,255,0.25);
+  }
+
+  /* ── SECTIONS ── */
+  section {
+    display: none;
+    animation: sectionIn 0.5s ease both;
+  }
+  section.active { display: block; }
+
+  @keyframes sectionIn {
+    from { opacity: 0; transform: translateY(16px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+
+  /* ── CARD ── */
+  .card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 20px;
+    padding: 32px;
+    margin-bottom: 18px;
+    position: relative;
+    overflow: hidden;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+  }
+
+  .card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, rgba(0,212,255,0.4), transparent);
+  }
+
+  .card:hover {
+    border-color: rgba(0,212,255,0.25);
+    box-shadow: var(--glow);
+  }
+
+  /* ── PROFILE ── */
+  .profile-top {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align:center;
+    gap: 22px;
+    margin-bottom: 28px;
+  }
+
+  .avatar-ring { 
+  position: relative; 
+  width:210px;
+  height:210px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-shrink: 0; }
+
+  .avatar-ring::before {
+    content: '';
+    position: absolute;
+    inset: -5px;
+    border-radius: 50%;
+    background: conic-gradient(from 0deg, var(--accent), var(--accent2), var(--accent3), var(--accent));
+    animation: spin 4s linear infinite;
+    z-index: 0;
+  }
+
+  .avatar-ring img {
+    position: relative;
+    z-index: 1;
+    width: 195px;
+    height: 195px;
+    border-radius: 50%;
+    border: 5px solid var(--bg);
+    object-fit: cover;
+    display: block;
+  }
+
+  @keyframes spin { to { transform: rotate(360deg); } }
+
+  .profile-info h2 {
+    font-family: 'Syne', sans-serif;
+    font-size: 2.4rem;
+    font-weight: 800;
+    text-align:center;
+    background: linear-gradient(135deg, #ffffff 10%, var(--accent) 50%,var(--accent3) 100% );
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: pink;
+    background-clip: text;
+    margin-bottom: 12px;
+  }
+
+  .contact-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px 20px;
+    font-size: 0.83rem;
+    color: var(--muted);
+    margin-bottom: 12px;
+  }
+  
+  /* =========================
+   CONTACT
+========================= */
+
+.contact{
+    text-align:center;
+    font-size:10.5pt;
+    color: #FFD700;
+    margin-bottom:4px;
+    line-height:1.6;
+}
+
+.contact a{
+    color: #FFD700;
+    text-decoration:none;
+    font-weight:500;
+}
+
+.contact-sep{
+    color:red;
+    margin:0 6px;
+}
+
+/* =========================
+   ICONS
+========================= */
+
+img.icon{
+    height:3em;
+    width:auto;
+    vertical-align:middle;
+    margin-right:4px;
+    position:relative;
+    top:-1px;
+}
+
+  .badge-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 6px 16px;
+    border: 1px solid var(--border);
+    border-radius: 50px;
+    color: var(--accent);
+    text-decoration: none;
+    font-size: 0.8rem;
+    font-weight: 500;
+    transition: all 0.3s ease;
+    background: rgba(0,212,255,0.05);
+  }
+
+  .badge-link:hover {
+    background: rgba(0,212,255,0.15);
+    border-color: var(--accent);
+    box-shadow: 0 0 16px rgba(0,212,255,0.2);
+    transform: translateY(-1px);
+  }
+
+  .section-title {
+    font-family: 'Syne', sans-serif;
+    font-size: 1.2rem;
+    font-weight: 700;
+    color: var(--accent);
+    letter-spacing: 0.02em;
+    margin-bottom: 18px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+
+  .section-title::after {
+    content: '';
+    flex: 1;
+    height: 1px;
+    background: linear-gradient(90deg, var(--border), transparent);
+  }
+
+  .objective-text {
+    font-size: 0.92rem;
+    line-height: 1.8;
+    color: #b8c8e0;
+    font-weight: 300;
+  }
+
+  /* ── EDUCATION ── */
+  .edu-item {
+    padding: 18px 0;
+    border-bottom: 1px solid var(--border);
+    position: relative;
+    padding-left: 20px;
+  }
+
+  .edu-item:last-child { border-bottom: none; }
+
+  .edu-item::before {
+    content: '';
+    position: absolute;
+    left: 0; top: 24px;
+    width: 8px; height: 8px;
+    border-radius: 50%;
+    background: var(--accent);
+    box-shadow: 0 0 10px var(--accent);
+  }
+
+  .edu-item h3 { font-family: 'Syne', sans-serif; font-size: 1rem; font-weight: 700; color: #fff; margin-bottom: 4px; }
+  .edu-institution { font-size: 0.85rem; color: var(--accent2); margin-bottom: 6px; font-weight: 400; }
+  .edu-meta { display: flex; gap: 20px; font-size: 0.8rem; color: var(--muted); }
+
+  .cgpa-badge {
+    background: rgba(0,212,255,0.1);
+    border: 1px solid rgba(0,212,255,0.2);
+    color: var(--accent);
+    padding: 2px 10px;
+    border-radius: 50px;
+    font-size: 0.75rem;
+    font-weight: 600;
+  }
+
+  /* ── SKILLS ── */
+  .skill-group { margin-bottom: 20px; }
+  .skill-group:last-child { margin-bottom: 0; }
+  .skill-label { font-family: 'Syne', sans-serif; font-size: 0.75rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: var(--muted); margin-bottom: 10px; }
+  .skill-tags { display: flex; flex-wrap: wrap; gap: 8px; }
+
+  .tag {
+    padding: 6px 14px;
+    border-radius: 8px;
+    font-size: 0.82rem;
+    font-weight: 500;
+    border: 1px solid;
+    transition: all 0.3s ease;
+    cursor: default;
+  }
+  .tag:hover { transform: translateY(-2px); }
+  .tag-cyan { background: rgba(0,212,255,0.08); border-color: rgba(0,212,255,0.25); color: #7ee8ff; }
+  .tag-purple { background: rgba(123,97,255,0.08); border-color: rgba(123,97,255,0.25); color: #b39dff; }
+  .tag-pink { background: rgba(255,107,157,0.08); border-color: rgba(255,107,157,0.25); color: #ffaac8; }
+  .tag-green { background: rgba(52,211,153,0.08); border-color: rgba(52,211,153,0.25); color: #6ee7b7; }
+  .tag-orange { background: rgba(251,146,60,0.08); border-color: rgba(251,146,60,0.25); color: #fdba74; }
+
+  /* ── PROJECTS GRID ── */
+  .projects-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 16px;
+  }
+
+  .project-card {
+    background: var(--surface2);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    padding: 22px;
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .project-card::after {
+    content: '';
+    position: absolute;
+    top: 0; left: 0;
+    width: 3px; height: 100%;
+    background: linear-gradient(180deg, var(--accent), var(--accent2));
+    border-radius: 3px 0 0 3px;
+  }
+
+  .project-card:hover {
+    border-color: rgba(0,212,255,0.3);
+    transform: translateY(-4px);
+    box-shadow: 0 12px 40px rgba(0,212,255,0.12);
+  }
+
+  .project-emoji {
+    font-size: 2rem;
+    margin-bottom: 12px;
+    display: block;
+  }
+
+  .project-num {
+    font-family: 'Syne', sans-serif;
+    font-size: 0.62rem;
+    font-weight: 700;
+    letter-spacing: 0.2em;
+    color: var(--accent);
+    text-transform: uppercase;
+    margin-bottom: 6px;
+  }
+
+  .project-title {
+    font-family: 'Syne', sans-serif;
+    font-size: 1rem;
+    font-weight: 700;
+    color: #fff;
+    margin-bottom: 10px;
+    line-height: 1.3;
+  }
+
+  .project-desc {
+    font-size: 0.84rem;
+    line-height: 1.7;
+    color: #8fa3c0;
+    font-weight: 300;
+    flex: 1;
+  }
+
+  .project-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    margin-top: 14px;
+  }
+
+  .ptag {
+    font-size: 0.7rem;
+    padding: 3px 9px;
+    border-radius: 20px;
+    background: rgba(0,212,255,0.07);
+    border: 1px solid rgba(0,212,255,0.15);
+    color: var(--accent);
+    font-weight: 500;
+  }
+
+  /* ── PROJECT LINK BUTTONS ── */
+  .project-links {
+    display: flex;
+    gap: 8px;
+    margin-top: 12px;
+    flex-wrap: wrap;
+  }
+
+  .proj-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    font-size: 0.72rem;
+    font-weight: 600;
+    font-family: 'Syne', sans-serif;
+    padding: 5px 13px;
+    border-radius: 20px;
+    text-decoration: none;
+    transition: all 0.25s ease;
+    letter-spacing: 0.03em;
+  }
+
+  .proj-btn-github {
+    background: rgba(255,255,255,0.05);
+    border: 1px solid rgba(255,255,255,0.15);
+    color: #c8d8f0;
+  }
+
+  .proj-btn-github:hover {
+    background: rgba(255,255,255,0.12);
+    border-color: rgba(255,255,255,0.35);
+    color: #fff;
+    transform: translateY(-1px);
+  }
+
+  .proj-btn-demo {
+    background: rgba(0,212,255,0.08);
+    border: 1px solid rgba(0,212,255,0.25);
+    color: var(--accent);
+  }
+
+  .proj-btn-demo:hover {
+    background: rgba(0,212,255,0.18);
+    border-color: rgba(0,212,255,0.5);
+    box-shadow: 0 0 14px rgba(0,212,255,0.2);
+    transform: translateY(-1px);
+  }
+
+  /* ── CERTIFICATES ── */
+  .certs-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+    gap: 16px;
+  }
+
+  .cert-card {
+    background: var(--surface2);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    overflow: hidden;
+    transition: all 0.3s ease;
+    cursor: pointer;
+    position: relative;
+  }
+
+  .cert-card:hover {
+    border-color: rgba(0,212,255,0.4);
+    transform: translateY(-4px);
+    box-shadow: 0 12px 40px rgba(0,212,255,0.15);
+  }
+
+  .cert-img-wrap {
+    position: relative;
+    width: 100%;
+    height: 160px;
+    overflow: hidden;
+    background: linear-gradient(135deg, #0d1520, #111d2e);
+  }
+
+  .cert-img-wrap img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.4s ease;
+    display: block;
+  }
+
+  .cert-card:hover .cert-img-wrap img { transform: scale(1.06); }
+
+  .cert-overlay {
+    position: absolute;
+    inset: 0;
+    background: rgba(0,212,255,0.08);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    transition: opacity 0.3s;
+  }
+
+  .cert-card:hover .cert-overlay { opacity: 1; }
+
+  .cert-overlay span {
+    background: var(--accent);
+    color: #000;
+    font-family: 'Syne', sans-serif;
+    font-size: 0.75rem;
+    font-weight: 700;
+    padding: 8px 18px;
+    border-radius: 50px;
+    letter-spacing: 0.05em;
+  }
+
+  .cert-body {
+    padding: 16px;
+  }
+
+  .cert-body h4 {
+    font-family: 'Syne', sans-serif;
+    font-size: 0.9rem;
+    font-weight: 700;
+    color: #fff;
+    margin-bottom: 4px;
+    line-height: 1.3;
+  }
+
+  .cert-provider {
+    font-size: 0.76rem;
+    color: var(--accent);
+    margin-bottom: 10px;
+    font-weight: 500;
+  }
+
+  .cert-view-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    font-size: 0.75rem;
+    color: var(--accent2);
+    text-decoration: none;
+    font-weight: 500;
+    transition: color 0.2s;
+    border: 1px solid rgba(123,97,255,0.3);
+    padding: 4px 12px;
+    border-radius: 20px;
+    background: rgba(123,97,255,0.07);
+  }
+
+  .cert-view-btn:hover { color: #fff; border-color: var(--accent2); background: rgba(123,97,255,0.18); }
+
+  /* Cert placeholder (Google Drive thumbnail) */
+  .cert-placeholder {
+    width: 100%;
+    height: 160px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(135deg, #0d1520, #1a2540);
+    gap: 8px;
+  }
+
+  .cert-placeholder .cert-icon-big { font-size: 2.5rem; }
+  .cert-placeholder .cert-label { font-size: 0.72rem; color: var(--muted); font-weight: 500; }
+
+  /* ── LIGHTBOX ── */
+  .lightbox {
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0.92);
+    backdrop-filter: blur(10px);
+    z-index: 1000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.3s ease;
+    padding: 20px;
+  }
+
+  .lightbox.open {
+    opacity: 1;
+    pointer-events: all;
+  }
+
+  .lightbox-content {
+    position: relative;
+    max-width: 90vw;
+    max-height: 90vh;
+    transform: scale(0.92);
+    transition: transform 0.3s ease;
+  }
+
+  .lightbox.open .lightbox-content { transform: scale(1); }
+
+  .lightbox-content iframe {
+    width: min(800px, 85vw);
+    height: min(600px, 80vh);
+    border: none;
+    border-radius: 12px;
+    background: #fff;
+  }
+
+  .lightbox-close {
+    position: absolute;
+    top: -44px;
+    right: 0;
+    background: rgba(255,255,255,0.1);
+    border: 1px solid rgba(255,255,255,0.2);
+    color: #fff;
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    cursor: pointer;
+    font-size: 1.1rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.2s;
+  }
+
+  .lightbox-close:hover { background: rgba(255,255,255,0.2); }
+
+  .lightbox-title {
+    position: absolute;
+    top: -44px;
+    left: 0;
+    color: rgba(255,255,255,0.8);
+    font-family: 'Syne', sans-serif;
+    font-size: 0.9rem;
+    font-weight: 600;
+    max-width: calc(100% - 50px);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  /* ── STRENGTHS ── */
+  .strengths-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap: 14px;
+  }
+
+  .strength-card {
+    background: var(--surface2);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    padding: 20px;
+    text-align: center;
+    transition: all 0.3s ease;
+  }
+
+  .strength-card:hover {
+    border-color: rgba(0,212,255,0.3);
+    box-shadow: 0 0 20px rgba(0,212,255,0.1);
+    transform: translateY(-3px);
+  }
+
+  .strength-icon { font-size: 1.8rem; margin-bottom: 8px; }
+  .strength-name { font-family: 'Syne', sans-serif; font-size: 0.88rem; font-weight: 700; color: #d0e0f0; }
+
+  /* ── LANGUAGES ── */
+  .lang-item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 16px 0;
+    border-bottom: 1px solid var(--border);
+  }
+  .lang-item:last-child { border-bottom: none; }
+  .lang-name { font-family: 'Syne', sans-serif; font-size: 1rem; font-weight: 700; color: #fff; }
+  .lang-level { display: flex; align-items: center; gap: 10px; }
+  .lang-dots { display: flex; gap: 5px; }
+  .dot { width: 10px; height: 10px; border-radius: 50%; transition: all 0.3s ease; }
+  .dot.filled { background: var(--accent); box-shadow: 0 0 8px var(--accent); }
+  .dot.empty { background: rgba(0,212,255,0.15); }
+  .lang-tag { font-size: 0.75rem; color: var(--accent2); background: rgba(123,97,255,0.1); border: 1px solid rgba(123,97,255,0.2); padding: 3px 10px; border-radius: 50px; font-weight: 500; }
+
+  /* ── INTERESTS ── */
+  .interests-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 14px;
+  }
+
+  .interest-card {
+    background: var(--surface2);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    padding: 20px 18px;
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .interest-card::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(135deg, rgba(0,212,255,0.05), transparent);
+    opacity: 0;
+    transition: opacity 0.3s;
+  }
+
+  .interest-card:hover::before { opacity: 1; }
+  .interest-card:hover {
+    border-color: rgba(0,212,255,0.3);
+    transform: translateY(-3px);
+    box-shadow: 0 8px 30px rgba(0,212,255,0.1);
+  }
+
+  .interest-icon { font-size: 1.6rem; margin-bottom: 10px; }
+  .interest-name { font-family: 'Syne', sans-serif; font-size: 0.9rem; font-weight: 700; color: #d0e0f0; line-height: 1.3; }
+
+  /* ── ANIMATIONS ── */
+  @keyframes fadeDown {
+    from { opacity: 0; transform: translateY(-20px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(20px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+
+  /* ── RESPONSIVE ── */
+  @media (max-width: 600px) {
+    .profile-top { flex-direction: column; text-align: center; }
+    .links-row { justify-content: center; }
+    .contact-row { justify-content: center; }
+    .card { padding: 22px 18px; }
+  }
+</style>
+</head>
+<body>
+
+<div class="wrapper">
+  <header>
+    <div class="header-label">✦ Portfolio</div>
+    <h1>Welcome to My Portfolio</h1>
+    <p>Computer Science Engineering · RGUKT Srikakulam</p>
+    <div class="header-line"><div class="header-dot"></div></div>
+  </header>
+
+  <nav>
+    <button class="active" onclick="showSection('summary', this)">Summary</button>
+    <button onclick="showSection('education', this)">Education</button>
+    <button onclick="showSection('skills', this)">Technical Skills</button>
+    <button onclick="showSection('projects', this)">Projects</button>
+    <button onclick="showSection('certifications', this)">Certificates</button>
+    <button onclick="showSection('strengths', this)">Strengths</button>
+    <button onclick="showSection('languages', this)">Languages Known</button>
+    <button onclick="showSection('interests', this)">Interests</button>
+  </nav>
+
+  <!-- ── SUMMARY ── -->
+  <section id="summary" class="active">
+    <div class="card">
+      <div class="profile-top">
+        <div class="avatar-ring">
+          <img src="My_images.png" alt="Vani Vasantha Laxmi" />
+        </div>
+        <div class="profile-info">
+          <h2>Vani Vasantha Laxmi Yepparika</h2>
+          <div class="contact">
+
+        <img src="C-Email.png" class="icon">
+        vanivasanthalaxmi1705@gmail.com
+
+        <span class="contact-sep">|</span>
+
+        <img src="C-phone.png" class="icon">
+        +91 7981032719
+
+        <span class="contact-sep">|</span>
+
+        <img src="C-location.png" class="icon">
+        Vizianagaram District, Andhra Pradesh State, India
+        
+        <span class="contact-sep">|</span>
+
+        <img src="C-dob.png" class="icon">
+        <b> DOB: </b> 17-02-2005
+
+    </div>
+
+    <div class="contact">
+
+        <img src="C-linkedin.png" class="icon">
+
+        <a href="https://linkedin.com/in/vani-vasantha-laxmi-yepparika-16023b286">
+            linkedin
+        </a>
+
+        <span class="contact-sep">|</span>
+
+        <img src="C-github.png" class="icon">
+
+        <a href="https://github.com/vani-1705">
+            Github
+        </a>
+    </div>
+
+    <div class="card">
+      <div class="section-title">Career Objective</div>
+      <p class="objective-text">
+        I am currently pursuing B.Tech in Computer Science Engineering at RGUKT Srikakulam.
+        I am passionate about frontend development, web technologies, and AI-based applications.<br><br>
+        I am interested in building user-friendly and innovative software solutions that solve real-world problems.
+        I am skilled in HTML, CSS, JavaScript, Python, and Java with a strong interest in continuous learning and improving my technical abilities.<br><br>
+        I am looking for opportunities to enhance my skills, gain practical experience, and contribute to impactful software development projects.
+      </p>
+    </div>
+  </section>
+
+  <!-- ── EDUCATION ── -->
+  <section id="education">
+    <div class="card">
+      <div class="section-title">Education</div>
+
+      <div class="edu-item">
+        <h3>B.Tech – Computer Science Engineering</h3>
+        <div class="edu-institution">Rajiv Gandhi University of Knowledge Technologies, Srikakulam</div>
+        <div class="edu-meta">
+          <span class="cgpa-badge">CGPA 7.99 (upto 5th sem)</span>
+          <span>2023 – 2027</span>
+        </div>
+      </div>
+
+      <div class="edu-item">
+        <h3>PUC – MPC with IT</h3>
+        <div class="edu-institution">Rajiv Gandhi University of Knowledge Technologies, Srikakulam</div>
+        <div class="edu-meta">
+          <span class="cgpa-badge">CGPA 7.88</span>
+          <span>2021 – 2023</span>
+        </div>
+      </div>
+
+      <div class="edu-item">
+        <h3>SSC</h3>
+        <div class="edu-institution">Sri Krishna Vidyaa Peet E.M High School, GPM</div>
+        <div class="edu-meta">
+          <span class="cgpa-badge">CGPA 9.7</span>
+          <span>2020 – 2021</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── SKILLS ── -->
+  <section id="skills">
+    <div class="card">
+      <div class="section-title">Technical Skills</div>
+
+      <div class="skill-group">
+        <div class="skill-label">Frontend</div>
+        <div class="skill-tags">
+          <span class="tag tag-cyan">HTML</span>
+          <span class="tag tag-cyan">CSS</span>
+          <span class="tag tag-cyan">JavaScript (Basics)</span>
+        </div>
+      </div>
+
+      <div class="skill-group">
+        <div class="skill-label">Programming Languages</div>
+        <div class="skill-tags">
+          <span class="tag tag-purple">Python</span>
+          <span class="tag tag-purple">Java</span>
+        </div>
+      </div>
+
+      <div class="skill-group">
+        <div class="skill-label">Database</div>
+        <div class="skill-tags">
+          <span class="tag tag-green">MySQL (Basics)</span>
+        </div>
+      </div>
+
+      <div class="skill-group">
+        <div class="skill-label">Concepts</div>
+        <div class="skill-tags">
+          <span class="tag tag-pink">Frontend Development</span>
+          <span class="tag tag-pink">Software Development</span>
+          <span class="tag tag-pink">AI/ML Basics</span>
+          <span class="tag tag-pink">Game Development</span>
+        </div>
+      </div>
+
+      <div class="skill-group">
+        <div class="skill-label">Tools</div>
+        <div class="skill-tags">
+          <span class="tag tag-orange">VS Code</span>
+          <span class="tag tag-orange">Git (Basics)</span>
+          <span class="tag tag-orange">Flutter</span>
+          <span class="tag tag-orange">Tkinter</span>
+        </div>
+      </div>
+
+      <div class="skill-group">
+        <div class="skill-label">Soft Skills</div>
+        <div class="skill-tags">
+          <span class="tag tag-green">Communication</span>
+          <span class="tag tag-green">Collaboration</span>
+          <span class="tag tag-green">Problem-solving</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── PROJECTS ── -->
+  <section id="projects">
+    <div class="card">
+      <div class="section-title">Projects</div>
+      <div class="projects-grid">
+
+        <div class="project-card">
+          <span class="project-emoji">🌾</span>
+          <div class="project-num">Project 01</div>
+          <div class="project-title">Agriculture Price Forecasting of Crops</div>
+          <p class="project-desc">ML-based system to forecast short-term crop prices using real AGMARK data with MSP-based analysis, market-specific insights, and a Flutter frontend for real-time forecasting. Random Forest model achieved R² of 0.949.</p>
+          <div class="project-tags">
+            <span class="ptag">Python</span>
+            <span class="ptag">ML</span>
+            <span class="ptag">Flutter</span>
+            <span class="ptag">Random Forest</span>
+          </div>
+          <div class="project-links">
+            <a href="https://github.com/Likhitha-Veeranki/Agriculture-Price-Forecasting-of-Crops" target="_blank" class="proj-btn proj-btn-github"> <b> 🔗Open in GitHub 🐱 </b> </a>
+          </div>
+        </div>
+
+        <div class="project-card">
+          <span class="project-emoji">🪪</span>
+          <div class="project-num">Project 02</div>
+          <div class="project-title">Company ID Card Generator</div>
+          <p class="project-desc">Web app to generate professional company ID cards with live front & back preview, auto company logo fetch, QR code generation, multiple themes, and PNG/PDF export using html2canvas & jsPDF.</p>
+          <div class="project-tags">
+            <span class="ptag">HTML</span>
+            <span class="ptag">CSS</span>
+            <span class="ptag">JavaScript</span>
+            <span class="ptag">QRCode.js</span>
+          </div>
+          <div class="project-links">
+            <a href="https://github.com/vani-1705/Company-ID-CARD-Generator" target="_blank" class="proj-btn proj-btn-github"> <b> 🔗Open in GitHub 🐱 </b> </a>
+            <a href="https://vercel.com/vani-projects/company-id-card-generator" target="_blank" class="proj-btn proj-btn-demo"> 🚀 Live Demo</a>
+          </div>
+        </div>
+
+        <div class="project-card">
+          <span class="project-emoji">🎤</span>
+          <div class="project-num">Project 03</div>
+          <div class="project-title">SmartSpeakTranslator (SST)</div>
+          <p class="project-desc">AI-powered multilingual voice recognition & translation web app with real-time speech-to-text, Google Translate API, AI voice output, translation history, dark/light mode, and 16+ language support.</p>
+          <div class="project-tags">
+            <span class="ptag">JavaScript</span>
+            <span class="ptag">Web Speech API</span>
+            <span class="ptag">Google Translate</span>
+          </div>
+          <div class="project-links">
+            <a href="https://github.com/vani-1705/Voice_Recognition-Translation" target="_blank" class="proj-btn proj-btn-github"> <b> 🔗Open in GitHub 🐱 </b> </a>
+            <a href="https://voice-recognition-translation.vercel.app/" target="_blank" class="proj-btn proj-btn-demo"> 🚀 Live Demo</a>
+          </div>
+        </div>
+
+        <div class="project-card">
+          <span class="project-emoji">🐍</span>
+          <div class="project-num">Project 04</div>
+          <div class="project-title">Snake Game Pro</div>
+          <p class="project-desc">Modern snake game with multiple food types, lives system, pause/resume, wall-pass feature, speed & volume settings, mobile touch controls, and background music using HTML, CSS & JavaScript.</p>
+          <div class="project-tags">
+            <span class="ptag">HTML</span>
+            <span class="ptag">CSS</span>
+            <span class="ptag">JavaScript</span>
+            <span class="ptag">Audio API</span>
+          </div>
+          <div class="project-links">
+            <a href="https://github.com/vani-1705/SnakeGame" target="_blank" class="proj-btn proj-btn-github"> <b> 🔗Open in GitHub 🐱 </b> </a>
+            <a href="https://snake-game-topaz-chi.vercel.app/" target="_blank" class="proj-btn proj-btn-demo"> 🚀 Live Demo</a>
+          </div>
+        </div>
+
+        <div class="project-card">
+          <span class="project-emoji">📄</span>
+          <div class="project-num">Project 05</div>
+          <div class="project-title">Resume Creator</div>
+          <p class="project-desc">Browser-based resume builder with live preview, multiple templates, font & color customization, dynamic add/remove sections, profile photo upload, and PDF download using jsPDF.</p>
+          <div class="project-tags">
+            <span class="ptag">HTML</span>
+            <span class="ptag">CSS</span>
+            <span class="ptag">JavaScript</span>
+            <span class="ptag">jsPDF</span>
+          </div>
+          <div class="project-links">
+            <a href="https://github.com/vani-1705/ResumeCreator" target="_blank" class="proj-btn proj-btn-github"> <b> 🔗Open in GitHub 🐱 </b> </a>
+            <a href="https://resume-creator-ecru.vercel.app/" target="_blank" class="proj-btn proj-btn-demo"> 🚀 Live Demo</a>
+          </div>
+        </div>
+
+        <div class="project-card">
+          <span class="project-emoji">💀</span>
+          <div class="project-num">Project 06</div>
+          <div class="project-title">SYS BREACH – Hacking Simulation</div>
+          <p class="project-desc">Cinematic fake hacking simulation with Matrix rain background, animated terminal logs, popup social media windows, red alert effects, cyberpunk HUD interface, and real-time counters. Visual only — no real hacking.</p>
+          <div class="project-tags">
+            <span class="ptag">HTML</span>
+            <span class="ptag">Canvas API</span>
+            <span class="ptag">CSS Animations</span>
+          </div>
+          <div class="project-links">
+            <a href="https://github.com/vani-1705/Fake-Hackingscreen" target="_blank" class="proj-btn proj-btn-github"> <b> 🔗Open in GitHub 🐱 </b></a>
+            <a href="https://fake-hackingscreen.vercel.app/" target="_blank" class="proj-btn proj-btn-demo"> 🚀 Live Demo</a>
+          </div>
+        </div>
+
+        <div class="project-card">
+          <span class="project-emoji">🖥️</span>
+          <div class="project-num">Project 07</div>
+          <div class="project-title">Terminal Calculator – Hacker Edition</div>
+          <p class="project-desc">Hacker-style terminal calculator with CRT effects, advanced math functions (trig, log, sqrt), keyboard shortcuts, command history navigation, and animated boot sequence.</p>
+          <div class="project-tags">
+            <span class="ptag">HTML</span>
+            <span class="ptag">CSS</span>
+            <span class="ptag">JavaScript</span>
+          </div>
+          <div class="project-links">
+            <a href="https://github.com/vani-1705/Terminal-basedCalculator" target="_blank" class="proj-btn proj-btn-github"> <b> 🔗Open in GitHub 🐱 </b></a>
+            <a href="https://terminal-based-calculator.vercel.app/" target="_blank" class="proj-btn proj-btn-demo"> 🚀 Live Demo</a>
+          </div>
+        </div>
+
+        <div class="project-card">
+          <span class="project-emoji">👥</span>
+          <div class="project-num">Project 08</div>
+          <div class="project-title">HR Dashboard – Employee Management</div>
+          <p class="project-desc">Full-featured HR management dashboard with CRUD operations, live search, department/status filters, sorting, pagination, stats cards, CSV export, modal forms, and toast notifications.</p>
+          <div class="project-tags">
+            <span class="ptag">HTML</span>
+            <span class="ptag">CSS</span>
+            <span class="ptag">JavaScript</span>
+          </div>
+          <div class="project-links">
+            <a href="https://github.com/vani-1705/Emp-details" target="_blank" class="proj-btn proj-btn-github"> <b> 🔗Open in GitHub 🐱 </b></a>
+            <a href="https://emp-details-sepia.vercel.app/" target="_blank" class="proj-btn proj-btn-demo"> 🚀 Live Demo</a>
+          </div>
+        </div>
+
+        <div class="project-card">
+          <span class="project-emoji">🧱</span>
+          <div class="project-num">Project 09</div>
+          <div class="project-title">Brick Breaker – Ultimate Edition</div>
+          <p class="project-desc">Advanced arcade Brick Breaker game in Python Tkinter with multiple levels, power-ups (wide paddle, multi-ball), score tracking, neon UI, increasing difficulty, and smooth animations.</p>
+          <div class="project-tags">
+            <span class="ptag">Python</span>
+            <span class="ptag">Tkinter</span>
+            <span class="ptag">Game Dev</span>
+          </div>
+          <div class="project-links">
+            <a href="https://github.com/vani-1705/BrickBreakerGame" target="_blank" class="proj-btn proj-btn-github"> <b> 🔗Open in GitHub 🐱 </b></a>
+          </div>
+        </div>
+
+        <div class="project-card">
+          <span class="project-emoji">❌⭕</span>
+          <div class="project-num">Project 10</div>
+          <div class="project-title">Tic Tac Toe – Ultimate Edition</div>
+          <p class="project-desc">Modern Tic Tac Toe with AI opponent (smart blocking & winning logic), two-player mode, dark/light themes, live score tracking, hover animations, and winner highlight effects in Python Tkinter.</p>
+          <div class="project-tags">
+            <span class="ptag">Python</span>
+            <span class="ptag">Tkinter</span>
+            <span class="ptag">AI Logic</span>
+          </div>
+          <div class="project-links">
+            <a href="https://github.com/vani-1705/TicTacToe" target="_blank" class="proj-btn proj-btn-github"> <b> 🔗Open in GitHub 🐱 </b></a>
+          </div>
+        </div>
+
+        <div class="project-card">
+          <span class="project-emoji">🚗</span>
+          <div class="project-num">Project 11</div>
+          <div class="project-title">Car Racing Game – Ultimate Edition</div>
+          <p class="project-desc">Endless arcade car racing game in Python Tkinter with 3 difficulty levels, power-ups (shield, slow motion, bonus score), day/night themes, high score saving, and ~60 FPS smooth gameplay.</p>
+          <div class="project-tags">
+            <span class="ptag">Python</span>
+            <span class="ptag">Tkinter</span>
+            <span class="ptag">JSON</span>
+          </div>
+          <div class="project-links">
+            <a href="https://github.com/vani-1705/CarRacingGame" target="_blank" class="proj-btn proj-btn-github"> <b> 🔗Open in GitHub 🐱 </b> </a>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ── CERTIFICATIONS ── -->
+  <section id="certifications">
+    <div class="card">
+      <div class="section-title">Certifications</div>
+      <div class="certs-grid">
+
+        <div class="cert-card" onclick="openLightbox('https://drive.google.com/file/d/1SalDduaYlJs6NXx1YMsUNo_LOq1zuo8G/view?usp=drivesdk', 'Build Your First HTML Web Page – Microsoft')">
+          <div class="cert-img-wrap">
+            <div class="cert-placeholder">
+              <span class="cert-icon-big">🌐 </span>
+              <span class="cert-label">Click to view certificate</span>
+            </div>
+            <div class="cert-overlay"><span>👁 View Full</span></div>
+          </div>
+          <div class="cert-body">
+            <h4> Build Your First HTML Web Page</h4>
+            <div class="cert-provider">Microsoft</div>
+            <a href="https://drive.google.com/file/d/1SalDduaYlJs6NXx1YMsUNo_LOq1zuo8G/view?usp=drivesdk" target="_blank" class="cert-view-btn" onclick="event.stopPropagation()">🔗 Open in Drive</a>
+          </div>
+        </div>
+
+        <div class="cert-card" onclick="openLightbox('https://drive.google.com/file/d/1ReyHzYRfW7VjKqkR62q15SPlyHA5520b/view?usp=drivesdk', 'Use CSS to Style Your HTML Page – Microsoft')">
+          <div class="cert-img-wrap">
+            <div class="cert-placeholder">
+              <span class="cert-icon-big">🎨</span>
+              <span class="cert-label">Click to view certificate</span>
+            </div>
+            <div class="cert-overlay"><span>👁 View Full</span></div>
+          </div>
+          <div class="cert-body">
+            <h4>Use CSS to Style Your HTML Page</h4>
+            <div class="cert-provider">Microsoft</div>
+            <a href="https://drive.google.com/file/d/1ReyHzYRfW7VjKqkR62q15SPlyHA5520b/view?usp=drivesdk" target="_blank" class="cert-view-btn" onclick="event.stopPropagation()">🔗 Open in Drive</a>
+          </div>
+        </div>
+
+        <div class="cert-card" onclick="openLightbox('https://drive.google.com/file/d/1xna_Dvy5HSTvZYJnPA0j68UE3jidgxrL/view?usp=drivesdk', 'Cloud Computing – NPTEL')">
+          <div class="cert-img-wrap">
+            <div class="cert-placeholder">
+              <span class="cert-icon-big">☁️</span>
+              <span class="cert-label">Click to view certificate</span>
+            </div>
+            <div class="cert-overlay"><span>👁 View Full</span></div>
+          </div>
+          <div class="cert-body">
+            <h4>Cloud Computing</h4>
+            <div class="cert-provider">NPTEL</div>
+            <a href="https://drive.google.com/file/d/1xna_Dvy5HSTvZYJnPA0j68UE3jidgxrL/view?usp=drivesdk" target="_blank" class="cert-view-btn" onclick="event.stopPropagation()">🔗 Open in Drive</a>
+          </div>
+        </div>
+        
+         <div class="cert-card" onclick="openLightbox('https://drive.google.com/file/d/1-YV4p_3J5QBYinswWCulWLtnbTF4d4Ty/view?usp=drivesdk', 'Introduction To Information Retrieval – NPTEL')">
+          <div class="cert-img-wrap">
+            <div class="cert-placeholder">
+              <span class="cert-icon-big">📚 </span>
+              <span class="cert-label">Click to view certificate</span>
+            </div>
+            <div class="cert-overlay"><span>👁 View Full</span></div>
+          </div>
+          <div class="cert-body">
+            <h4>Introduction To Information Retrieval </h4>
+            <div class="cert-provider">NPTEL</div>
+            <a href="https://drive.google.com/file/d/1-YV4p_3J5QBYinswWCulWLtnbTF4d4Ty/view?usp=drivesdk" target="_blank" class="cert-view-btn" onclick="event.stopPropagation()">🔗 Open in Drive</a>
+          </div>
+        </div>
+
+        <div class="cert-card" onclick="openLightbox('https://drive.google.com/file/d/1-YV4p_3J5QBYinswWCulWLtnbTF4d4Ty/view?usp=drivesdk', 'Learn The Basics Of Web Accessibility ')">
+          <div class="cert-img-wrap">
+            <div class="cert-placeholder">
+              <span class="cert-icon-big"> 💻 </span>
+              <span class="cert-label">Click to view certificate</span>
+            </div>
+            <div class="cert-overlay"><span>👁 View Full</span></div>
+          </div>
+          <div class="cert-body">
+            <h4> Learn The Basics Of Web Accessibility </h4>
+            <div class="cert-provider"> Microsoft </div>
+            <a href="https://drive.google.com/file/d/1-YV4p_3J5QBYinswWCulWLtnbTF4d4Ty/view?usp=drivesdk" target="_blank" class="cert-view-btn" onclick="event.stopPropagation()">🔗 Open in Drive</a>
+          </div>
+        </div>
+
+        <div class="cert-card" onclick="openLightbox('https://drive.google.com/file/d/1LCnlvaDan_DShVGCvO2T4d0fliRAARci/view?usp=drivesdk', 'Certificate 5')">
+          <div class="cert-img-wrap">
+            <div class="cert-placeholder">
+              <span class="cert-icon-big">🎖️</span>
+              <span class="cert-label">Click to view certificate</span>
+            </div>
+            <div class="cert-overlay"><span>👁 View Full</span></div>
+          </div>
+          <div class="cert-body">
+            <h4>Aviskandhara Certificate</h4>
+            <div class="cert-provider"> Govt-Enterpuner</div>
+            <a href="https://drive.google.com/file/d/1LCnlvaDan_DShVGCvO2T4d0fliRAARci/view?usp=drivesdk" target="_blank" class="cert-view-btn" onclick="event.stopPropagation()">🔗 Open in Drive</a>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ── STRENGTHS ── -->
+  <section id="strengths">
+    <div class="card">
+      <div class="section-title">Strengths</div>
+      <div class="strengths-grid">
+        <div class="strength-card">
+          <div class="strength-icon">🧩</div>
+          <div class="strength-name">Problem Solving</div>
+        </div>
+        <div class="strength-card">
+          <div class="strength-icon">🧠</div>
+          <div class="strength-name">Quick Learning</div>
+        </div>
+        <div class="strength-card">
+          <div class="strength-icon">👥</div>
+          <div class="strength-name">Team Collaboration</div>
+        </div>
+        <div class="strength-card">
+          <div class="strength-icon">🤝</div>
+          <div class="strength-name">Adaptability</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── LANGUAGES ── -->
+  <section id="languages">
+    <div class="card">
+      <div class="section-title">Languages Known</div>
+
+      <div class="lang-item">
+        <div class="lang-name">English</div>
+        <div class="lang-level">
+          <div class="lang-dots">
+            <div class="dot filled"></div>
+            <div class="dot filled"></div>
+            <div class="dot filled"></div>
+            <div class="dot filled"></div>
+            <div class="dot empty"></div>
+          </div>
+          <span class="lang-tag">Proficient</span>
+        </div>
+      </div>
+
+      <div class="lang-item">
+        <div class="lang-name">Hindi</div>
+        <div class="lang-level">
+          <div class="lang-dots">
+            <div class="dot filled"></div>
+            <div class="dot filled"></div>
+            <div class="dot filled"></div>
+            <div class="dot filled"></div>
+            <div class="dot filled"></div>
+          </div>
+          <span class="lang-tag">Advanced</span>
+        </div>
+      </div>
+
+      <div class="lang-item">
+        <div class="lang-name">Telugu</div>
+        <div class="lang-level">
+          <div class="lang-dots">
+            <div class="dot filled"></div>
+            <div class="dot filled"></div>
+            <div class="dot filled"></div>
+            <div class="dot filled"></div>
+            <div class="dot filled"></div>
+          </div>
+          <span class="lang-tag">Native</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── INTERESTS ── -->
+  <section id="interests">
+    <div class="card">
+      <div class="section-title">Interests</div>
+      <div class="interests-grid">
+        <div class="interest-card">
+          <div class="interest-icon">📱</div>
+          <div class="interest-name">Responsive Web Design</div>
+        </div>
+        <div class="interest-card">
+          <div class="interest-icon">🖥️</div>
+          <div class="interest-name">User Interface Development</div>
+        </div>
+        <div class="interest-card">
+          <div class="interest-icon">💡</div>
+          <div class="interest-name">Creative Problem Solving</div>
+        </div>
+        <div class="interest-card">
+          <div class="interest-icon">🌍</div>
+          <div class="interest-name">Open-source Learning</div>
+        </div>
+        <div class="interest-card">
+          <div class="interest-icon">🎮</div>
+          <div class="interest-name">Game Development</div>
+        </div>
+        <div class="interest-card">
+          <div class="interest-icon">🤖</div>
+          <div class="interest-name">AI / ML Applications</div>
+        </div>
+      </div>
+    </div>
+  </section>
+</div>
+
+<!-- ── LIGHTBOX ── -->
+<div class="lightbox" id="lightbox" onclick="closeLightboxOnBg(event)">
+  <div class="lightbox-content">
+    <div class="lightbox-title" id="lightboxTitle"></div>
+    <button class="lightbox-close" onclick="closeLightbox()">✕</button>
+    <iframe id="lightboxFrame" src="" allowfullscreen></iframe>
+  </div>
+</div>
+
+<script>
+  function showSection(id, btn) {
+    document.querySelectorAll('section').forEach(s => s.classList.remove('active'));
+    document.querySelectorAll('nav button').forEach(b => b.classList.remove('active'));
+    document.getElementById(id).classList.add('active');
+    if (btn) btn.classList.add('active');
+  }
+
+  function openLightbox(url, title) {
+    document.getElementById('lightboxFrame').src = url;
+    document.getElementById('lightboxTitle').textContent = title;
+    document.getElementById('lightbox').classList.add('open');
+    document.body.style.overflow = 'hidden';
+  }
+
+  function closeLightbox() {
+    document.getElementById('lightbox').classList.remove('open');
+    document.getElementById('lightboxFrame').src = '';
+    document.body.style.overflow = '';
+  }
+
+  function closeLightboxOnBg(e) {
+    if (e.target === document.getElementById('lightbox')) closeLightbox();
+  }
+
+  document.addEventListener('keydown', e => {
+    if (e.key === 'Escape') closeLightbox();
+  });
+</script>
+</body>
+</html>
